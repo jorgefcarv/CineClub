@@ -1,0 +1,61 @@
+<div class="row justify-content-center" style="margin: 10rem">
+  <div class="col-md-6">
+  <img class="card-img-top mx-auto" style="max-width: 30%; height: auto; margin-bottom: 1rem" src="<%= @filme.imagem_caminho %>" alt="Imagem do filme">
+    <h2><%= @filme.titulo %></h2>
+    <p><strong>diretor:</strong> <%= @filme.diretores %></p>
+    <p><strong>produtora:</strong> <%= @filme.produtora %></p>
+    <p><strong>produtora:</strong> <%= @filme.ano_lancamento.strftime("%Y") %></p>
+
+  </div>
+  <div class="col-md-6">
+    <%= form_with(model: @movie_review, url: movie_reviews_path, method: :post, id: 'movie-review-form') do |form| %>
+      <%= form.hidden_field :filme_id, value: @filme.id %>
+      <div class="form-group">
+        <%= form.label :rating, "Nota" %>
+        <%= form.number_field :rating, class: 'form-control',min: 0, max: 5 %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :opinion, "Opinião" %>
+        <%= form.text_area :opinion, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit "Salvar Avaliação", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-12" style="top: 5rem;widht: 100%; background-color: #c2c8d1; border-radius:10px ">
+    <br><!-- movie_reviews/classificacoes.html.erb -->
+    <h3 style="margin:2rem">Avaliações para: <%= @filme.titulo %></h3>
+  
+    <!-- Exibir as avaliações existentes -->
+    <% @reviews.each do |review| %>
+      <div style="background-color: white; margin:2rem; padding:3rem; border-radius:10px">
+        <p><b>Usuário: <%= review.user.username %></b></p>
+        <p><b>Nota: </b><%= review.rating %></p>
+        <p><b>Opinião:</b> <%= review.opinion %></p>
+        <br>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('movie-review-form');
+
+    form.addEventListener('submit', function(event) {
+      var rating = document.getElementById('movie_review_rating').value;
+
+      if (rating === '' || isNaN(rating) || rating < 0 || rating > 5) {
+        alert('A nota não pode ser nula. Necessário um valor de 0 a 5.');
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+
+
+

@@ -1,0 +1,3 @@
+class Classificacao < ApplicationRecord
+end
+  

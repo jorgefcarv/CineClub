@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CineClub</title>
+      <%= stylesheet_link_tag 'application', media: 'all' %>
+      <%= javascript_include_tag 'application' %>
+      <%= favicon_link_tag 'letra-c.png' %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  </head>
+
+  <body style="background-color: #84898B; margin-top: 4rem;">
+    <div class="container-body"  style="margin:4rem">
+      <div class="row ">
+        <div class="col col-2" style="margin:0; padding:0;">
+          <h1 style="color: #2E2E2E; font-size: 25px; font-family: Arial; font-weight: 700; word-wrap: break-word; font-weight: bold; margin-left: 2rem">
+            Cine<span style="color: #FFFFFF;margin-left:0px">Club
+          </h1>
+        </div>
+        <div class="col col-lg-7" style="display: flex; justify-content: left; margin:0; padding:0">
+          <%= form_tag todos_filmes_path, method: :get, class: 'form-inline ' do %>
+            <div>
+              <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar por título, diretores, produtora..." aria-label="Pesquisar" name="search" style="width: 30rem">
+              <button class="btn btn-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+             
+            </div>
+          <% end %>
+        </div>
+        <div class="col col-lg-3" style="display: flex;justify-content: flex-evenly';">
+          <%# <div class="d-flex justify-content-between">
+            <div style="margin-right: 10px">
+            <%= image_tag "user.png", alt: "Descrição da imagem", width:"50", height: "50" %>
+            <%# </div> %>
+            <div class="d-flex justify-content-evenly">
+              <div style="margin-right: 5rem"> 
+                <span style="color: white" >Bem vindo(a)! <%= current_user.name %> </span>
+              </div>
+              <div>
+                <%= link_to 'Sair', custom_logout_path, method: :delete, style: 'color: white; text-decoration: none;' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row ">
+      <div class="col col-lg-2" style="display: flex; justify-content: center; margin-top: 13rem;">
+        <ul class="list-unstyled text-white"> 
+          <li class="mb-2">
+            <%= link_to root_path do %>
+              <p style="color: white;font-weight: bold;"><%= image_tag("icon_home.svg", size: "20x20")%> HOME</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to meus_favoritos_path do %>
+              <p style="color: white;font-weight: bold;"><%= image_tag("icon_heart.png", size: "18x18")%> MEUS FAVORITOS</p>
+            <% end %>
+          </li>
+          <li class="mb-2">
+            <%= link_to movie_reviews_path do %>
+              <p style="color: white;font-weight: bold;"><%= image_tag("icon_star.png", size: "18x18")%> CLASSIFICAR</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_filme_path do %>
+              <p style="color: white;font-weight: bold;"><%= image_tag("icon_add.png", size: "18x18")%> ADICIONAR FILME</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to todos_filmes_path do %>
+              <p style="color: white;font-weight: bold;"><%= image_tag("movie_icon.png", size: "18x18")%> TODOS OS FILMES</p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col col-lg-10" style="display: flex;justify-content: flex-end; padding: 0" >
+        <div class="container-yield" style="background-color: white; width: 100%; margin-right:3rem; border-radius: 20px ">
+          <%= yield %>
+          <!-- O comando 'yield' vai renderizar o conteúdo de cada página -->
+        </div>
+      </div>
+    </div>
+    <footer>
+      <!-- Seu rodapé -->
+    </footer>
+  </body>
+</html>

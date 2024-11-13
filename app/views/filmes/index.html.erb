@@ -1,0 +1,23 @@
+<h3  style="display:flex; justify-content:left; margin: 3rem 0 0 17rem; color: #4A529D">Classificações do mês</h3>
+<div ><br></div>
+<div class="row mb-2" style="margin: 2rem; display:flex; justify-content:center;">
+  <% grouped_filmes = @filmes.group_by(&:id) %>
+  <% grouped_filmes.each do |filme_id, filmes| %>
+
+    <div class="col-md-4" style="display:flex; justify-content:center; margin: 0.5rem; ">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" >
+        <div class="col-auto d-none d-lg-block" style="background-color: #E3F5FF">
+          <img style="margin-top: 3rem" class="bd-placeholder-img" width="100" height="150" src="<%= filmes.first.imagem_caminho.present? ? filmes.first.imagem_caminho : "https://gabrielchalita.com.br/wp-content/uploads/2019/12/semcapa.png"%>" role="img" aria-label="Placeholder: Imagem de Capa" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+        </div>
+        <div class="col p-4 d-flex flex-column position-static" style="padding:0;  background-color: #E3F5FF">
+          <h3 class="mb-0"><%= filmes.first.titulo %></h3>
+          <p class="mb-0"><%= filmes.first.diretores %></p>
+          <p class="mb-1 text-muted">produtora: <%= filmes.first.produtora %> </p>
+          <p class="mb-0">Média de Notas: <%= filmes.first.calcular_media_notas %></p><br>
+          <%= link_to 'Avaliar', movie_review_path(filmes), class: 'btn', style:'background-color: #138496; color: white' %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>

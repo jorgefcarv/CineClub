@@ -1,0 +1,23 @@
+<div style="display: flex; justify-content: center">
+  <div id="<%= dom_id filme %>">
+    <div  style="display: flex; justify-content: left">
+      <img src="<%= filme.imagem_caminho %>" alt="Descrição da imagem" style="width: 300px;">
+    </div><br>
+    <div>
+      <strong>Titulo:</strong>
+      <%= filme.titulo %>
+    </div><br>
+    <div>
+      <strong>diretores:</strong>
+      <%= filme.diretores %>
+    </div>
+    <div>
+      <strong>Ano lançamento:</strong>
+      <%= filme.ano_lancamento.strftime("%Y") %>
+    </div>
+    <div>
+      <strong>produtora:</strong>
+      <%= filme.produtora %>
+    </div>
+  </div>
+</div>

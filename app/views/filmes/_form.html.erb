@@ -1,0 +1,76 @@
+<%= form_with(model: filme, html: { id: 'filme-form' }) do |form| %>
+  <% if filme.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(filme.errors.count, "error") %> prohibited this filme from being saved:</h2>
+
+      <ul>
+        <% filme.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row mb-6" style="padding:20px">
+    <div class="col-md-6" style="display: flex; justify-content: center; margin-top:7rem; "> 
+      <%= form.text_field :imagem_caminho, class: 'form-control', style:'width:15rem; height: 20rem; border-radius: 20px', placeholder:'LINK DA CAPA' %>
+    </div>
+
+    <div class="col-md-6" >
+      <div class="row" >
+        <div class="col-md-12" style="margin-top:2rem; margin-bottom: 1rem">
+          <%= form.text_field :titulo, class: 'form-control', placeholder: 'Título do filme:*', style:'width:30rem;border-radius: 20px' %>
+        </div>
+
+        <div class="field col-md-12" style="margin-bottom: 1rem">
+          <%= form.text_field :diretores, class: 'form-control', placeholder: 'Diretores:*', style:'width:30rem;border-radius: 20px' %>
+        </div>
+
+        <div class="field col-md-12" style="margin-bottom: 1rem">
+          <%= form.text_field :produtora, class: 'form-control' , placeholder: 'Produtora:*', style:'width:30rem;border-radius: 20px'%>
+        </div>
+         <div class="field col-md-12" style="margin-bottom: 1rem">
+          <%= form.text_field :idiomas, class: 'form-control' , placeholder: 'Idiomas:', style:'width:30rem;border-radius: 20px'%>
+        </div>
+         <div class="field col-md-12" style="margin-bottom: 1rem">
+          <%= form.text_field :genero, class: 'form-control' , placeholder: 'Gênero Cinematrográfico:', style:'width:30rem;border-radius: 20px'%>
+        </div>
+        <div class="field col-md-12" style="margin-bottom: 1rem; text-align:left">
+          <%= form.label 'Ano de lançamento:*', style: "display: block" %>
+        </div>
+        <div class="field col-md-6" style="margin-bottom: 3rem; margin-right: 0;">
+          <%= form.date_field :ano_lancamento, class: 'form-control', style:'width:15rem;border-radius: 20px'  %>
+        </div>
+
+        <div class="field actions col-md-12" >
+          <%= form.submit 'Salvar', class: 'btn btn-warning', style:'width:15rem;border-radius: 20px' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('filme-form').addEventListener('submit', function(event) {
+        if (!validateForm()) {
+          event.preventDefault(); // Impede o envio do formulário se a validação falhar
+        }
+      });
+
+      function validateForm() {
+        var titulo = document.getElementById('filme_titulo').value;
+        var diretores = document.getElementById('filme_diretores').value;
+        var produtora = document.getElementById('filme_produtora').value;
+
+        if (!titulo || !diretores || !produtora) {
+          alert('Por favor, preencha todos os campos obrigatórios.');
+          return false;
+        }
+
+        // Adicione outras validações conforme necessário
+
+        return true; // Envie o formulário se todas as validações passarem
+      }
+    });
+  </script>
+<% end %>

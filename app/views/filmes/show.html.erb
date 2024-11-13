@@ -1,0 +1,18 @@
+<div class="row justify-content-center" style="padding: 20px">
+  <div class="col-md-6 text-center">
+    <p style="color: green"><%= notice %></p>
+    <img src="<%= @filme.imagem_caminho.present? ? @filme.imagem_caminho : 'URL_DA_IMAGEM_PADRAO' %>" alt="Capa do filme" width="300" height="500">
+  </div>
+  <div class="col-md-6" style="margin-top: 50px;">
+    <h1><%= @filme.titulo %></h1>
+    <p>diretor(es): <%= @filme.diretores %></p>
+    <p>produtora: <%= @filme.produtora %></p>
+    <p>Ano de Lançamento: <%= @filme.ano_lancamento.strftime('%Y') if @filme.ano_lancamento %></p>
+
+    <div  style="margin-top: 6rem;">
+      <%= link_to "Ver classificações", movie_review_path(@filme), class: "btn btn-primary", style:"margin-bottom:1rem" %>
+      <%= link_to "Editar filme", edit_filme_path(@filme), class: "btn btn-primary", style:"margin-bottom:1rem" %>
+      <%= button_to "Destrua esse filme", @filme, method: :delete, data: { confirm: 'Tem certeza que deseja deletar?' }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

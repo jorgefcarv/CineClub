@@ -1,0 +1,33 @@
+<div class="row justify-content-center mb-2" style="margin-top:2rem">
+  <%= form_tag movie_reviews_path, method: :get, class: 'form-inline' do %>
+    <div class="form-group mx-auto">
+      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Buscar filme por título, diretor ou produtora', style: 'width: 30rem;' %>
+    </div>
+    <%= submit_tag 'Pesquisar', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<div class="container" style="margin-top: 4rem;">
+  <% if @filmes.any? %>
+    <div class="row">
+      <% @filmes.each do |filme| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <!-- Exibir as informações do filme -->
+            <img class="card-img-top mx-auto" style="max-width: 80%; height: auto;" src="<%= filme.imagem_caminho.present? ? filme.imagem_caminho : "https://gabrielchalita.com.br/wp-content/uploads/2019/12/semcapa.png"%>" alt="Imagem do filme">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= filme.titulo %></h5>
+              <p class="card-text">diretor: <%= filme.diretores %></p>
+              <p class="card-text">produtora: <%= filme.produtora %></p>
+              <div class="mt-auto">
+                <%= link_to 'Avaliar', movie_review_path(filme), class: 'btn btn-primary' %>
+                <%= link_to 'Ver filme', filme_path(filme.id), class: 'btn btn-secondary' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center">Nenhum filme encontrado.</p>
+  <% end %>
+</div>

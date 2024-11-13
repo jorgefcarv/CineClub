@@ -1,0 +1,13 @@
+DATABASE_PRIVATE_URL=postgresql://postgres:D-4a*DfgBF3--faa-3acfDCCda34dB-c@postgres.railway.internal:5432/railway
+DATABASE_URL=postgresql://postgres:D-4a*DfgBF3--faa-3acfDCCda34dB-c@monorail.proxy.rlwy.net:56100/railway
+PGDATABASE=/var/lib/postgresql/data/pgdata
+PGHOST=monorail.proxy.rlwy.net
+PGPASSWORD=${{POSTGRES_PASSWORD}}
+PGPORT=56100
+PGUSER=${{POSTGRES_USER}}
+POSTGRES_DB=railway
+POSTGRES_PASSWORD=D-4a*DfgBF3--faa-3acfDCCda34dB-c
+POSTGRES_USER=postgres
+SSL_CERT_DAYS=820
+RAILWAY_TCP_PROXY_PORT
+RAILWAY_TCP_PROXY_DOMAIN

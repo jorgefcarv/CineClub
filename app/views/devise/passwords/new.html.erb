@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'passwords' %>
+<body style="background-color: #84898B">
+
+  <div class="esqueceu"><br>
+    <h2 class="title-esqueceu">Esqueceu sua senha?</h2><br><br>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+
+      <div class="container text-center">
+        <div class="mx-auto row">
+          <div class=" mb-3 col-md-12">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: 'floatingInput', placeholder: 'E-mail:'  %>
+          </div>
+        </div>
+        <div class="mx-auto row">
+          <div class="mb-3 col-md-12 d-grid gap-2 actions field">
+            <%= f.submit "Envie-me instruções via email", class: "btn btn-primary", style:"background-color: #3858FF" %>
+          </div>
+        </div>
+      </div><br>
+    <% end %>
+    <div style="text-align: center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</body>
