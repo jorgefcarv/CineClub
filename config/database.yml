@@ -23,7 +23,7 @@ default: &default
   password: qaCYOSqqpjPoBllujEnuHkuMjaJtzraB
   username: postgres
   port: 5432
-  host: postgres.railway.internal
+  host: postgres
   url: postgresql://postgres:qaCYOSqqpjPoBllujEnuHkuMjaJtzraB@postgres.railway.internal:5432/railway
 
 development:
